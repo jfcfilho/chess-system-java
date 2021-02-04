@@ -1,6 +1,10 @@
 package application;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 import chess.ChessPiece;
+import chess.ChessPosition;
 import chess.enuns.Color;
 
 public class UI {
@@ -50,5 +54,16 @@ public class UI {
             }
         }
         System.out.print(" ");
+	}
+	
+	public static ChessPosition readChessPosition(Scanner sc) {
+		try {
+			String linha = sc.nextLine();
+			char column = linha.charAt(0);
+			int row = Integer.parseInt(linha.substring(1));
+			return new ChessPosition(column, row);
+		} catch (RuntimeException e) {
+			throw new InputMismatchException("Erro lendo posição: Os valores válidos são de a1 a h8!");
+		}
 	}
 }
