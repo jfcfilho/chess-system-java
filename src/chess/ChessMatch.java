@@ -85,4 +85,12 @@ public class ChessMatch {
 			throw new ChessException("A peça escolhida não pode ser movida para a posição de destino!");			
 		}
 	}
+	
+	public boolean[][] possibleMoves(ChessPosition sourcePosition){
+		Position position = sourcePosition.toPosition();
+		
+		validateSourcePosition(position);
+		
+		return board.piece(position).possibleMoves();
+	}
 }
